@@ -1,0 +1,3 @@
+rootProject.name = 'ogplus-dealer-app'
+include 'dealer-app', 'ogplus-common-java'
+

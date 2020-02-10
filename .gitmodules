@@ -1,0 +1,3 @@
+[submodule "ogplus-common-java"]
+	path = ogplus-common-java
+	url = http://git.oriental-game.com/ogplus/ogplus-common-java.git

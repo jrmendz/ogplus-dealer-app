@@ -1,0 +1,92 @@
+server:
+  port: 0
+
+spring:
+  application:
+    name: dealer-app-${app.game-category}-${app.table-number}
+  datasource:
+    url: jdbc:mysql://rm-3ns74i0qn45u458jt4o.mysql.rds.aliyuncs.com:3306/panda_dev
+    username: panda_dev
+    password: QNu5ernGqMVW4wJeCzqM
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  cloud:
+    discovery:
+      enabled: false
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+app:
+  game-category: BACCARAT   #BACCARAT, DRAGON_TIGER, FANTAN, MONEY_WHEEL, ROULETTE, SIC_BO
+  table-number: C1
+  squeeze-mode: false
+  squeeze-time1: 15
+  squeeze-time2: 10
+  bidding-mode: false  #enabled bidding
+  bidding-time: 10  #remain betting time will show bidding icon
+  bidding-extend-time: 10 #extend time
+  gui: true
+  socket-url:
+    baccarat: ws://panda.oriental-game.com:12321/2CAXryXglM
+    dragontiger: ws://panda.oriental-game.com:12322/6VZ43drRw7
+    moneywheel: ws://panda.oriental-game.com:12323/tS35xtrq4h
+    roulette: ws://47.89.18.135:12322/6VZ43drRw7
+  socket-session-prefix: dealerapp
+  key-separator:
+    baccarat: VwOsvhJFib
+    dragontiger: bhbXNpgtNc
+    moneywheel: XsfPwxLSwe
+    roulette: pcdAnDzEXx
+  video-url:
+  video-record-path: panda/replays/
+  vlc-options:
+    - --network-caching=2000
+    - --avcodec-skiploopfilter=All
+    - --avcodec-hw=none
+  backup:
+    host: 172.16.119.242
+    username: dev2
+    password: dev2@123456!@#$%^
+    path: panda/replays/
+    public-url-prefix: http://${app.backup.host}/record/
+
+baccarat:
+dragon-tiger:
+  type: CLASSIC #NEW, CLASSIC
+money-wheel:
+  max-round: 80
+  camera-delay:
+    result: 10
+roulette:
+  enable-00: false
+sic-bo:
+  max-round: 80
+
+key-center:
+  enabled: false
+  service-id: key-center
+  endpoint: key-center
+
+camera:
+  enabled: false
+  server:
+    host: 192.168.160.151
+    port: 1111
+  mode:
+    default: DefaultCamera
+    zoomed: ZoomedCamera
+    result: ResultCamera
+
+management:
+  endpoints:
+    enabled-by-default: false
+  endpoint:
+    info.enabled=true
+    health.enabled=true
